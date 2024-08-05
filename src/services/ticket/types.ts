@@ -31,5 +31,13 @@ export interface GetTicketByIdDto {
 }
 export interface GetTicketByFilterDto {
   client: User;
-  filter: object;
+  filter: Filter;
+}
+
+interface Filter {
+  createdAt?: string | Date;
+  updatedAt?: string | Date;
+  _id?: string;
+  creator?: string;
+  status?: string;
 }

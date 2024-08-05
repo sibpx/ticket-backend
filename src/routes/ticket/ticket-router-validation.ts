@@ -30,7 +30,11 @@ export const getTicketByIdValidation = celebrate({
   }),
 });
 export const getTicketsByFilterValidation = celebrate({
-  body: Joi.object().keys({
-    filter: Joi.object(),
+  query: Joi.object().keys({
+    createdAt: Joi.string(),
+    updatedAt: Joi.string(),
+    _id: Joi.string(),
+    creator: Joi.string(),
+    status: Joi.string(),
   }),
 });

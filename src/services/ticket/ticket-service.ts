@@ -87,7 +87,7 @@ class TicketService implements ITicketService {
     if (dto.client.role === UserRole.admin) {
       return await this.model.find(dto.filter);
     } else {
-      return await this.model.find({ ...dto.filter, creator: dto.client._id });
+      return await this.model.find({ creator: dto.client._id, ...dto.filter,  });
     }
   }
 }

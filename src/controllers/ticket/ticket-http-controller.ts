@@ -77,7 +77,7 @@ class TicketHttpController implements ITicketHttpController {
   ) => {
     try {
       const tickets = await this.service.getTicketsByFilter({
-        filter: req.body.filter,
+        filter: req.query,
         client: req.user as User,
       });
       res.status(statusCodes.okStatusCode).send({ tickets });
