@@ -7,7 +7,9 @@ export interface ITicketService {
   findTicketById(id: string): Promise<Ticket | void | null>;
   resolveTicket(dto: ResolveTicketDto): Promise<Ticket | void | null>;
   getTicketById(dto: GetTicketByIdDto): Promise<Ticket | void | null>;
-  getTicketsByFilter(dto: GetTicketByFilterDto): Promise<Ticket[] | void | null>;
+  getTicketsByFilter(
+    dto: GetTicketByFilterDto,
+  ): Promise<Ticket[] | void | null>;
 }
 
 export interface CreateTicketDto {
@@ -32,6 +34,8 @@ export interface GetTicketByIdDto {
 export interface GetTicketByFilterDto {
   client: User;
   filter: Filter;
+  limit: number;
+  page: number;
 }
 
 interface Filter {

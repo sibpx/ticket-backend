@@ -17,31 +17,31 @@ export const ticketRouter = express.Router();
 ticketRouter.post(
   "/ticket",
   createTicketValidation,
-  ticketHttpController.createTicket
+  ticketHttpController.createTicket,
 );
 ticketRouter.patch(
   "/ticket/:ticketId",
   editTicketValidation,
-  ticketHttpController.editTicket
+  ticketHttpController.editTicket,
 );
 ticketRouter.delete(
   "/ticket/:ticketId",
   deleteTicketValidation,
-  ticketHttpController.deleteTicket
+  ticketHttpController.deleteTicket,
 );
 ticketRouter.patch(
   "/ticket/:ticketId/resolve",
   adminMiddleware,
   resolveTicketValidation,
-  ticketHttpController.resolveTicket
+  ticketHttpController.resolveTicket,
 );
 ticketRouter.get(
   "/ticket/filter",
   getTicketsByFilterValidation,
-  ticketHttpController.getTicketsByFilter
+  ticketHttpController.getTicketsByFilter,
 );
 ticketRouter.get(
   "/ticket/:ticketId",
   getTicketByIdValidation,
-  ticketHttpController.getTicketById
+  ticketHttpController.getTicketById,
 );

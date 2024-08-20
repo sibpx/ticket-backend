@@ -1,7 +1,7 @@
 import { Model } from "mongoose";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import { type User, UserModel, UserRole} from "db";
+import { type User, UserModel, UserRole } from "db";
 import {
   createBadRequestError,
   createConflictError,
@@ -32,7 +32,7 @@ class UserService implements IUserService {
       .findOne({ email: dto.email })
       .select("+password")
       .orFail(
-        createUnauthorizedError(errorText.notAuthorized.wrongCredentials)
+        createUnauthorizedError(errorText.notAuthorized.wrongCredentials),
       );
     //если нашли, сверяем присланный пароль и хеш из бд
     const isPasswordMatched = await bcrypt.compare(dto.password, user.password);

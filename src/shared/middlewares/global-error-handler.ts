@@ -5,7 +5,7 @@ export const globalErrorHandler: ErrorMiddlewareFunction = (
   error,
   req,
   res,
-  next
+  next,
 ) =>
   res
     .status(error.status || statusCodes.internalStatusCode)

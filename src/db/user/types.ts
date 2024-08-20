@@ -9,5 +9,5 @@ export type User = {
 
 export enum UserRole {
   admin = "ADMIN",
-  user = "USER"
+  user = "USER",
 }

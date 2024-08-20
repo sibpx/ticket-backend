@@ -22,7 +22,7 @@ const ticketSchema = new mongoose.Schema<Ticket>(
       type: String,
     },
   },
-  { versionKey: false, timestamps: { createdAt: true } }
+  { versionKey: false, timestamps: { createdAt: true } },
 );
 
 export const TicketModel = mongoose.model<Ticket>("Ticket", ticketSchema);

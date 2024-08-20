@@ -18,7 +18,7 @@ export const authMiddleware: MiddlewareFunction = (req, res, next) => {
   try {
     payload = jwt.verify(
       token,
-      process.env.JWT_SECRET as string
+      process.env.JWT_SECRET as string,
     ) as TokenSchema;
   } catch (e) {
     next(createUnauthorizedError(errorText.notAuthorized.tokenExpired));

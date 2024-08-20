@@ -1,9 +1,12 @@
+import { User, UserRole } from "db";
 import { ticketService, ITicketService } from "services";
-import { type MiddlewareFunctionWithAuthData } from "shared/middlewares";
-import { statusCodes } from "shared/utils";
+import {
+  type MiddlewareFunctionWithAuthData,
+  compareToNaN,
+  statusCodes,
+} from "shared";
 
 import { ITicketHttpController } from "./types";
-import { User, UserRole } from "db";
 
 class TicketHttpController implements ITicketHttpController {
   constructor(private readonly service: ITicketService) {}
@@ -37,7 +40,7 @@ class TicketHttpController implements ITicketHttpController {
     try {
       await this.service.deleteTicket(
         req.params.ticketId,
-        req.user?._id.toString() as string
+        req.user?._id.toString() as string,
       );
       res.status(statusCodes.okStatusCode).send({ message: "OK" });
     } catch (e) {
@@ -73,12 +76,18 @@ class TicketHttpController implements ITicketHttpController {
   getTicketsByFilter: MiddlewareFunctionWithAuthData = async (
     req,
     res,
-    next
+    next,
   ) => {
     try {
+      const { limit, page, ...filter } = req.query;
+      const docLimit = compareToNaN(limit as string, 5);
+      const docPage = compareToNaN(page as string, 1);
+
       const tickets = await this.service.getTicketsByFilter({
-        filter: req.query,
+        filter: filter,
         client: req.user as User,
+        limit: docLimit,
+        page: docPage,
       });
       res.status(statusCodes.okStatusCode).send({ tickets });
     } catch (e) {

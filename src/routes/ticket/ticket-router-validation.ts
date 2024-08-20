@@ -31,6 +31,8 @@ export const getTicketByIdValidation = celebrate({
 });
 export const getTicketsByFilterValidation = celebrate({
   query: Joi.object().keys({
+    limit: Joi.string(),
+    page: Joi.string(),
     createdAt: Joi.string(),
     updatedAt: Joi.string(),
     _id: Joi.string(),

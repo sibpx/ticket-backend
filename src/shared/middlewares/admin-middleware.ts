@@ -5,7 +5,7 @@ import { User } from "db";
 export const adminMiddleware: MiddlewareFunctionWithAuthData = (
   req,
   res,
-  next
+  next,
 ) => {
   const { role } = req.user as User;
 

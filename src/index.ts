@@ -23,6 +23,6 @@ if (PORT && JWT_SECRET && DB_PATH) {
   server.listen(PORT, () => console.log("Server is running, port", PORT));
 } else {
   console.log(
-    `Failed to start. PORT ${PORT}, DB_PATH ${DB_PATH}, JWT_SECRET ${JWT_SECRET}. Check .env file`
+    `Failed to start. PORT ${PORT}, DB_PATH ${DB_PATH}, JWT_SECRET ${JWT_SECRET}. Check .env file`,
   );
 }

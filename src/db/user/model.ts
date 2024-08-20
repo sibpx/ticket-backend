@@ -25,10 +25,10 @@ const userSchema = new mongoose.Schema<User>(
     role: {
       type: String,
       required: true,
-      enum: Object.values(UserRole)
+      enum: Object.values(UserRole),
     },
   },
-  { versionKey: false }
+  { versionKey: false },
 );
 
 export const UserModel = mongoose.model<User>("User", userSchema);

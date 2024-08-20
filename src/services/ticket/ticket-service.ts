@@ -84,10 +84,26 @@ class TicketService implements ITicketService {
     return ticket;
   }
   async getTicketsByFilter(dto: GetTicketByFilterDto) {
-    if (dto.client.role === UserRole.admin) {
-      return await this.model.find(dto.filter);
-    } else {
-      return await this.model.find({ creator: dto.client._id, ...dto.filter,  });
+    try {
+      if (dto.client.role === UserRole.admin) {
+        return await this.model
+          .find(dto.filter)
+          .skip(dto.page == 1 ? 0 : dto.page * dto.limit)
+          .limit(dto.limit);
+      } else {
+        return await this.model
+          .find({
+            creator: dto.client._id,
+            ...dto.filter,
+          })
+          .skip(dto.page == 1 ? 0 : dto.page * dto.limit)
+          .limit(dto.limit);
+      }
+    } catch (e) {
+      //@ts-ignore
+      if (e.name === "CastError") {
+        throw createNotFoundError(errorText.notFound.ticketNotFound);
+      }
     }
   }
 }

@@ -21,5 +21,5 @@ userRouter.get("/users/me", userHttpController.getCurrentUser);
 userRouter.get(
   "/users/:userId",
   getUserByIdValidation,
-  userHttpController.getUserById
+  userHttpController.getUserById,
 );

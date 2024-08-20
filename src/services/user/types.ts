@@ -6,7 +6,7 @@ export interface IUserService {
   checkUniqueField(
     field: string,
     value: string,
-    errorMessage: string
+    errorMessage: string,
   ): Promise<void>;
   getUserById(id: string): Promise<User | void>;
 }
